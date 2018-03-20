@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+                 
+    <p:growl id="growl" sticky="true" showDetail="true"/>
+ 
+    <p:wizard flowListener="#{userWizard.onFlowProcess}">
+        <p:tab id="personal" title="Datos Personales">
+            <p:panel header="Datos del Paciente">
+                <p:messages />
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputText value="Folio: *" />
+                    <p:inputText value="#{userWizard.user.firstname}" required="true" label="Folio"/>
+ 
+                    <h:outputText value="Nombre: *" />
+                    <p:inputText value="#{userWizard.user.firstname}" required="true" label="Nombre"/>
+                    
+                    <h:outputText value="Edad: *" />
+                    <p:inputText value="#{userWizard.user.firstname}" required="true" label="Edad"/>
+                    
+                        <p:outputLabel for="sexo" value="Sexo:" />
+                        <p:selectOneRadio id="sexo" value="#{radioView.console}">
+                            <f:selectItem itemLabel="Masculino" itemValue="M" />
+                            <f:selectItem itemLabel="Femenino" itemValue="F" />
+                        </p:selectOneRadio>
+                    
+                        <p:outputLabel for="fechaNacimiento" value="Fecha de Nacimiento: " />
+                        <p:inputMask id="fechaNacimiento" value="#{maskView.date}" mask="9999-99-99"/>
+                    
+                    <p:outputLabel for="phone" value="Teléfono:" />
+                    <p:inputMask id="phone" value="#{maskView.phone}" mask="(999) 999 9999"/>
+                    
+                    <h:outputText value="Estatura (cm): *" />
+                    <p:inputText id="Estatura" value=""/>
+                    
+                    <h:outputText value="Peso (kg): *" />
+                    <p:inputText id="Peso" value=""/>
+                    
+                    <h:outputText value="Pais: *" />
+                    <p:inputText id="Pais" value=""/>
+                    
+                    <p:outputLabel for="EstadoCivil" value="Estado civil:" />
+                    <p:selectOneListbox id="EstadoCivil" value="#{selectOneView.option}">
+                        <f:selectItem itemLabel="Soltero" itemValue="1" />
+                        <f:selectItem itemLabel="Casado" itemValue="2" />
+                        <f:selectItem itemLabel="Divorciado" itemValue="3" />
+                        <f:selectItem itemLabel="Otro" itemValue="4"/>
+                    </p:selectOneListbox>
+                    
+                    <p:outputLabel for="NivelEstudios" value="Nivel de Estudios:" />
+                    <p:selectOneListbox id="NivelEstudios" value="#{selectOneView.option}">
+                        <f:selectItem itemLabel="Básico" itemValue="1" />
+                        <f:selectItem itemLabel="Medio Superior" itemValue="2" />
+                        <f:selectItem itemLabel="Licenciatura" itemValue="3" />
+                        <f:selectItem itemLabel="Maestría" itemValue="4"/>
+                        <f:selectItem itemLabel="Doctorado" itemValue="5"/>
+                    </p:selectOneListbox>
+
+                    <p:outputLabel for="EstadoSalud" value="¿Cómo considera su estado de salud?" />
+                        <p:selectOneRadio id="EstadoSalud" value="#{radioView.console}">
+                            <f:selectItem itemLabel="Bueno" itemValue="Bueno" />
+                            <f:selectItem itemLabel="Malo" itemValue="Malo" />
+                            <f:selectItem itemLabel="Regular" itemValue="Regular"/>
+                        </p:selectOneRadio>
+                    
+                    <h4>Domicilio:</h4>
+                    <h:outputText value="" />
+                    
+                    <h:outputText value="Pais: *" />
+                    <p:inputText id="Pais" value=""/>
+                    
+                    <h:outputText value="Estado: *" />
+                    <p:inputText id="Estado" value=""/>
+                    
+                    <h:outputText value="Ciudad: *" />
+                    <p:inputText id="Ciudad" value=""/>
+                    
+                    <h:outputText value="Calle: *" />
+                    <p:inputText id="calle" value=""/>
+                    
+                    <h:outputText value="Colonia: *" />
+                    <p:inputText id="calle" value=""/>
+                    
+                    <h4>Ocupación:</h4>
+                    <h:outputText value="" />
+                    
+                    <h:outputText value="Ocupación: *" />
+                    <p:inputText id="Ocupacion" value=""/>
+                    
+                    <h:outputText value="Dirección de oficina: *" />
+                    <p:inputText id="DireccionOficina" value=""/>
+                    
+                    <h:outputText value="Teléfono oficina: *" />
+                     <p:inputMask id="TelOficina" value="#{maskView.phone}" mask="(999) 999 9999"/>
+                    
+                    <h4>Médico :</h4>
+                    <h:outputText value="" />
+                    
+                    <h:outputText value="Nombre: *" />
+                    <p:inputText id="NombreMedico" value=""/>
+                    
+                    <h:outputText value="Teléfono: *" />
+                    <p:inputMask id="TelMedico" value="#{maskView.phone}" mask="(999) 999 9999"/>
+                    
+                    <h:outputText value="Dirección: *" />
+                    <p:inputText id="DireccionMedico" value=""/>
+                     
+                    <h:outputText value="¿Por qué solicita un tratamiento?"/>
+                    <p:inputTextarea rows="6" cols="33" />
+                     
+                    <h:outputText value="Observaciones"/>
+                    <p:inputTextarea rows="6" cols="33" />
+                    
+                    <p:commandButton value="Submit" update="display" oncomplete="PF('dlg').show()"/>
+                    
+                </h:panelGrid>
+            </p:panel>
+        </p:tab>
+ 
+        <p:tab id="address" title="Cuestionario">
+            <p:panel header="Address Details">
+                <p:messages />
+                <h:panelGrid columns="2" columnClasses="label, value">
+                    <h:outputText value="Street: " />
+                    <p:inputText value="#{userWizard.user.street}" />
+ 
+                    <h:outputText value="Postal Code: " />
+                    <p:inputText value="#{userWizard.user.postalCode}" />
+ 
+                    <h:outputText value="City: " />
+                    <p:inputText value="#{userWizard.user.city}" />
+ 
+                    <h:outputText value="Skip to last: " />
+                    <h:selectBooleanCheckbox value="#{userWizard.skip}" />
+                </h:panelGrid>
+            </p:panel>
+        </p:tab>
+ 
+        <p:tab id="contact" title="Examen Orofacial">
+            <p:panel header="Contact Information">
+                <p:messages />
+                <h:panelGrid columns="2" columnClasses="label, value">
+                    <h:outputText value="Email: *" />
+                    <p:inputText value="#{userWizard.user.email}" required="true" label="Email"/>
+ 
+                    <h:outputText value="Phone: " />
+                    <p:inputText value="#{userWizard.user.phone}"/>
+ 
+                    <h:outputText value="Additional Info: " />
+                    <p:inputText value="#{userWizard.user.info}"/>
+                </h:panelGrid>
+            </p:panel>
+        </p:tab>
+ 
+        <p:tab id="confirm" title="Odontograma">
+            <p:panel header="Confirmation">
+                <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
+                    <h:panelGrid columns="2" columnClasses="label, value">
+                        <h:outputText value="Firstname: " />
+                        <h:outputText value="#{userWizard.user.firstname}" styleClass="outputLabel"/>
+ 
+                        <h:outputText value="Lastname: " />
+                        <h:outputText value="#{userWizard.user.lastname}" styleClass="outputLabel"/>
+ 
+                        <h:outputText value="Age: " />
+                        <h:outputText value="#{userWizard.user.age}" styleClass="outputLabel"/>
+                    </h:panelGrid>
+ 
+                    <h:panelGrid columns="2" columnClasses="label, value">
+                        <h:outputText value="Street: " />
+                        <h:outputText value="#{userWizard.user.street}" styleClass="outputLabel"/>
+ 
+                        <h:outputText value="Postal: " />
+                        <h:outputText value="#{userWizard.user.postalCode}" styleClass="outputLabel"/>
+ 
+                        <h:outputText value="City: " />
+                        <h:outputText value="#{userWizard.user.city}" styleClass="outputLabel"/>
+                    </h:panelGrid>
+ 
+                    <h:panelGrid columns="2" columnClasses="label, value">
+                        <h:outputText value="Email: " />
+                        <h:outputText value="#{userWizard.user.email}" styleClass="outputLabel"/>
+ 
+                        <h:outputText value="Phone " />
+                        <h:outputText value="#{userWizard.user.phone}" styleClass="outputLabel"/>
+ 
+                        <h:outputText value="Info: " />
+                        <h:outputText value="#{userWizard.user.info}" styleClass="outputLabel"/>
+ 
+                        <h:outputText />
+                        <h:outputText />
+                    </h:panelGrid>
+                </h:panelGrid>
+ 
+               
+            </p:panel>
+        </p:tab>
+    </p:wizard>
+ 
+</h:form>
+    </h:body>
+</html>
+
